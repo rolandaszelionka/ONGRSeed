@@ -1,0 +1,37 @@
+services:
+    # Product.
+    ongr_demo.oxid.import.product.source:
+        class: %ongr_connections.import.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.import.product.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.import.product.elastic_document_type%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.source, method: onSource }
+
+    ongr_demo.oxid.import.product.modifier:
+        class: %ongr_demo.oxid.import.product.modifier.class%
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
+           - [ setSeoFinderService, [ @ongr_oxid.seo_finder_service ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.modify, method: onModify }
+
+    ongr_demo.oxid.import.product.consumer:
+        class: %ongr_connections.import.consumer.class%
+        parent: ongr_connections.import.consumer
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.consume, method: onConsume }
+
+    ongr_demo.oxid.import.finish:
+        class: %ongr_demo.oxid.import.finish.class%
+        parent: ongr_connections.import.finish
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.finish, method: onFinish }

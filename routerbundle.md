@@ -6,6 +6,7 @@ https://ongr.readthedocs.org/en/latest/components/RouterBundle/index.html
 
 ```
 $ composer require "ongr/router-bundle" "~0.1"
+$ composer update
 ```
 
 ```php
@@ -51,7 +52,7 @@ ongr_product_show:
         page:  \d+
 ```
  
-ProductController.php:
+ProductController.php (src/AppBundle/Controller/):
 
 ```php
 <?php
@@ -94,7 +95,7 @@ SeoAwareTrait will handle urls.
 
 Also items.json must have URLs added.
 
-items.json:
+items.json example:
 
 ```javascript
 {
@@ -111,24 +112,7 @@ items.json:
    }
 },
 ```
-
-## Usage
-
-Now product can have direct link to it in twig, example:
-
-```html
-<a href="{{ path('ongr_product', {'document': product, '_seo_key': 'normal-name'}) }}">{{ product.flower }}</a>
-```
-
-in current example the link will be:
-
- url/german-amaryllis/
-
-Product also can be accessed via URL, example:
-
- url/product/{id}
-
-Product page twig example:
+index.html.twig (src/AppBundle/Resources/views/Product/):
 
 ```html
 {% extends 'base.html.twig' %}
@@ -148,5 +132,24 @@ Product page twig example:
 </div>
 {% endblock %}
 ```
+
+
+## Usage
+
+Now product can have direct link to it in twig, example:
+
+```html
+<a href="{{ path('ongr_product', {'document': product, '_seo_key': 'normal-name'}) }}">{{ product.flower }}</a>
+```
+
+in current example the link will be:
+
+ `url/german-amaryllis/`
+
+Product also can be accessed via URL, example:
+
+ `url/product/{id}`
+
+
 
 [Back to documentation](elasticdocumentation.md)

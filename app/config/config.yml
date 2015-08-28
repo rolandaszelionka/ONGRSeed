@@ -80,11 +80,65 @@ ongr_elasticsearch:
             settings:
                 refresh_interval: -1
                 number_of_replicas: 1
+        oxid:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: ongr_oxid
+            settings:
+                refresh_interval: -1
+                number_of_replicas: 1
     managers:
         default:
             connection: default
+            debug: "%kernel.debug%"
             mappings:
                 - AppBundle
+        oxid:
+            connection: oxid
+            debug: "%kernel.debug%"
+            mappings:
+                - ONGROXIDConnectorBundle
+                - OxidBundle
+
+doctrine:
+    orm:
+# already exist in config
+#        auto_generate_proxy_classes: "%kernel.debug%"
+#        auto_mapping: true
+        mappings:
+            ONGROXIDConnectorBundle:
+                type: annotation
+                alias: OXIDConnectorBundle
+                dir: Entity
+                prefix: ONGR\OXIDConnectorBundle\Entity
+                is_bundle: true
+            OxidBundle:
+                type: annotation
+                alias: OxidBundle
+                dir: Entity
+                prefix: OxidBundle\Entity
+                is_bundle: true
+
+ongr_connections:
+    active_shop: oxid
+    shops:
+        oxid:
+            shop_id: 0
+    sync:
+        sync_storage:
+            mysql:
+                connection: default
+                table_name: ongr_sync_storage
+
+ongr_oxid:
+    database_mapping:
+        oxid:
+            tags:
+                @shop_tag: '_1'
+                @lang_tag: ''
+            shop_id: 0
+            lang_id: 0
+    entity_namespace: OxidBundle
 
 ongr_filter_manager:
     managers:
@@ -155,3 +209,4 @@ ongr_router:
             _controller: AppBundle:Product:document
             _default_route: ongr_product_show
             _id_param: documentId
+

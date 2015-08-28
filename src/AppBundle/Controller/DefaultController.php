@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Document\Product;
 use ONGR\ElasticsearchBundle\DSL\Aggregation\StatsAggregation;
 use ONGR\ElasticsearchBundle\DSL\Aggregation\TermsAggregation;
 use ONGR\ElasticsearchBundle\DSL\Aggregation\TopHitsAggregation;
@@ -26,23 +25,23 @@ class DefaultController extends Controller
 //        $repository->remove(27);
 
         // add
-        $prod = new Product();
-        $prod->setId(27);
-        $prod->setFlower('Roze');
-        $prod->setPlace('Lithuania');
-        $prod->setStock(1);
-        $manager->persist($prod);   //adds to bulk container
-        $manager->commit();         //bulk data to index and flush
+//        $prod = new Product();
+//        $prod->setId(27);
+//        $prod->setFlower('Roze');
+//        $prod->setPlace('Lithuania');
+//        $prod->setStock(1);
+//        $manager->persist($prod);   //adds to bulk container
+//        $manager->commit();         //bulk data to index and flush
 
         // find
-        $product1 = $repository->find(27);
+        $product1 = $repository->find(1);
 
         // find by term (works with numbers not strings)
         $product2 = $repository->findBy(['stock' => 5]);
 
         // https://ongr.readthedocs.org/en/latest/components/ElasticsearchBundle/dsl/index.html
 
-        // randam rezu kieki + statistika (min,max)
+        // find results number and statistics (min,max)
         $statsAggregation = new StatsAggregation('grades_count');
         $statsAggregation->setField('stock');
         $search = $repository
@@ -55,7 +54,7 @@ class DefaultController extends Controller
 var_dump($totalCount);
 var_dump($statsResult);
 
-        // sugrupuojam pagal lauka flower visus irasus
+        // group by flower
         $termsAggregation = new TermsAggregation('groupby');
         $termsAggregation->setField('flower');
         $search = $repository
@@ -64,7 +63,7 @@ var_dump($statsResult);
         $results = $repository->execute($search);
         $termsResults = $results->getAggregations()->find('groupby');
 
-        // sugrupuojam pagal lauka flower irasus ir jeim grazinam juos
+        // group by flower and return them
         $termsAggregation = new TermsAggregation('grades_count');
         $topHitsAggregation = new TopHitsAggregation('hits_count');
         $termsAggregation->setField('flower');

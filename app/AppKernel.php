@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
             new ONGR\ConnectionsBundle\ONGRConnectionsBundle(),
             new ONGR\RouterBundle\ONGRRouterBundle(),
+            new ONGR\OXIDConnectorBundle\ONGROXIDConnectorBundle(),
+            new OxidBundle\OxidBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

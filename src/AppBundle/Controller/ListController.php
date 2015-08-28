@@ -15,7 +15,7 @@ class ListController extends Controller
         $results = $this->get('ongr_filter_manager.default')->execute($request);
 
         return $this->render(
-            'AppBundle:List:results.html.twig',
+            'AppBundle:List:index.html.twig',
             [
                 'filter_manager' => $results,
             ]

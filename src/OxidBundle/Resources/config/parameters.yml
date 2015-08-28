@@ -1,0 +1,6 @@
+parameters:
+    ongr_oxid.seo_finder_service.repository: OxidBundle:Seo
+    ongr_demo.oxid.import.finish.class: ONGR\ConnectionsBundle\EventListener\ImportFinishEventListener
+    ongr_demo.oxid.import.product.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ProductModifier
+    ongr_demo.oxid.import.product.doctrine_entity_type: OxidBundle:Article
+    ongr_demo.oxid.import.product.elastic_document_type: OxidBundle:Articles

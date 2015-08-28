@@ -11,14 +11,13 @@ services:
                - @es.manager
                - AppBundle:Product  # my.elasticsearch.entity.class
            tags:
-               - { name: kernel.event_listener, event: ongr.pipeline.import.default.source, method: onSource }
-
+               - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.source, method: onSource }
 
     test.import.modifier:
 #        parent: ongr_connections.import.modifier
         class: %test.import.modifier.class%
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.modify, method: onModify }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.modify, method: onModify }
 
     test.import.consumer:
         class: %ongr_connections.import.consumer.class%
@@ -26,7 +25,7 @@ services:
         arguments:
             - @es.manager
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.consume, method: onConsume }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.consume, method: onConsume }
 
     test.import.finish:
         class: %ongr_connections.import.finish.class%
@@ -34,4 +33,4 @@ services:
         arguments:
             - @es.manager
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.finish, method: onFinish }

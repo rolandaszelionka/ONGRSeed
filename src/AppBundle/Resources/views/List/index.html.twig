@@ -1,0 +1,95 @@
+{% extends "::base.html.twig" %}
+{% block title %}Filters{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <h2><a href="{{ path('ongr_filter_page') }}">Filters manager bundle test</a></h2>
+
+        {% set filters = filter_manager.filters %}
+
+        <div class="row">
+            <div class="col-md-4">
+                <h3><i>Sort</i> Flowers:</h3>
+
+                <ul class="list-group" style="list-style:none;">
+                    {% for choice in filters.sorting.choices %}
+                        <li><a class="list-group-item {% if choice.active == true %}active{% endif %}" href="{{ path('ongr_filter_page', choice.getUrlParameters()) }}">{{ choice.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Place <i>Choice</i>:</h3>
+                <ul class="list-group" style="list-style:none;">
+                    {% for choice in filters.places.choices %}
+                        <li><a  class="list-group-item {% if choice.active == true %}active{% endif %}" href="{{ path('ongr_filter_page', choice.getUrlParameters()) }}">{{ choice.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3><i>Multiselect</i> flowers:</h3>
+
+                <ul class="list-group" style="list-style:none;">
+                    {% for choice in filters.flowers.choices %}
+                        <li><a  class="list-group-item {% if choice.active == true %}active{% endif %}" href="{{ path('ongr_filter_page', choice.getUrlParameters()) }}">{{ choice.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <h3><i>Match Search</i> flower:</h3>
+
+                <form method="get" action="{{ path('ongr_filter_page', filters.search.getUrlParameters()) }}">
+                    <input type="text" name="search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+                f.e iris
+            </div>
+
+            <div class="col-md-3">
+                <h3><i>Fuzzy Search</i> flower:</h3>
+                <form method="get" action="{{ path('ongr_filter_page', filters.fuzzy_search.getUrlParameters()) }}">
+                    <input type="text" name="fuzzy_search">
+                    <button class="btn" type="submit">Send</button>
+                </form>
+                f.e iri
+            </div>
+
+            <div class="col-md-3">
+                <h3><i>Range Search</i> stock:</h3>
+                <form method="get" action="{{ path('ongr_filter_page', filters.range_search.getUrlParameters()) }}">
+                    <input type="text" name="range">
+                    <button class="btn" type="submit">Send</button>
+                </form>
+                f.e 1;5
+            </div>
+
+            <div class="col-md-3">
+                <h3><i>doc_field Search</i> stock:</h3>
+
+                <form method="get" action="{{ path('ongr_filter_page', filters.stocks.getUrlParameters()) }}">
+                    <input type="text" name="stock">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+                f.e 2
+            </div>
+        </div>
+
+
+
+        <br/>
+        <h3>Products: </h3>
+        <ul class="list-group">
+            {% for product in filter_manager.result %}
+               {#<li class="list-group-item"><a href="{{ path('ongr_product', {'document': product, '_seo_key': 'normal-name'}) }}">{{ product.flower }} {{ product.stock }}</a></li>#}
+               <li class="list-group-item">{{ product.flower }} {{ product.stock }}</li>
+            {% endfor %}
+        </ul>
+
+        <br/>
+        <h3>Pagination: </h3>
+        {{ ongr_paginate(filters.list_pager.getPager(), 'ongr_filter_page') }}
+
+    </div>
+{% endblock %}

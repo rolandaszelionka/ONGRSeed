@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Oxid article{% endblock %}
+{% block body %}
+    <div class="container">
+        <h2>Oxid connection bundle test</h2>
+
+        <h3>Product with id '{{ id }}' is:</h3>
+        <ul class="list-group" style="list-style:none;">
+            <li class="list-group-item">Title: {{ product.title }}</li>
+            <li class="list-group-item">Description: {{ product.description }}</li>
+            <li class="list-group-item">Price: {{ product.price }}</li>
+        </ul>
+    </div>
+{% endblock %}

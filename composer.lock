@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e5155babd8381aeb39ba98628c20fb06",
+    "hash": "68f6a89443f0c47ea75beb2d6e0165dc",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1220,6 +1220,52 @@
             "time": "2015-06-23 06:52:49"
         },
         {
+            "name": "ongr/content-bundle",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ongr-io/ContentBundle.git",
+                "reference": "c35346148194aa13a710039b8159b0b565417354"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ongr-io/ContentBundle/zipball/c35346148194aa13a710039b8159b0b565417354",
+                "reference": "c35346148194aa13a710039b8159b0b565417354",
+                "shasum": ""
+            },
+            "require": {
+                "ongr/elasticsearch-bundle": "~0.8",
+                "ongr/router-bundle": "~0.1",
+                "php": ">=5.4",
+                "symfony/symfony": "~2.6"
+            },
+            "require-dev": {
+                "ongr/ongr-strict-standard": "~2.1",
+                "phpunit/phpunit": "~4.1",
+                "squizlabs/php_codesniffer": "~2.0",
+                "tedivm/stash-bundle": "0.3.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "ONGR\\ContentBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ONGR team",
+                    "homepage": "http://www.ongr.io"
+                }
+            ],
+            "description": "Main content bundle to handle category, product and content data.",
+            "homepage": "http://ongr.io",
+            "time": "2015-05-19 08:59:58"
+        },
+        {
             "name": "ongr/elasticsearch-bundle",
             "version": "v0.10.1",
             "source": {
@@ -1319,6 +1365,53 @@
             "description": "Filter manager bundle for product lists",
             "homepage": "http://ongr.io",
             "time": "2015-08-06 13:19:24"
+        },
+        {
+            "name": "ongr/oxid-connector-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ongr-io/OXIDConnectorBundle.git",
+                "reference": "de348b96f20abe174572dc6d77c2f1f25f129bf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ongr-io/OXIDConnectorBundle/zipball/de348b96f20abe174572dc6d77c2f1f25f129bf5",
+                "reference": "de348b96f20abe174572dc6d77c2f1f25f129bf5",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.2",
+                "ongr/connections-bundle": "~0.6",
+                "ongr/content-bundle": "~0.4",
+                "ongr/router-bundle": "~0.3",
+                "php": ">=5.4",
+                "symfony/symfony": "~2.6"
+            },
+            "require-dev": {
+                "ongr/ongr-strict-standard": "~1.0.0-beta",
+                "phpunit/phpunit": "~4.2",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "ONGR\\OXIDConnectorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ONGR team",
+                    "homepage": "http://www.ongr.io"
+                }
+            ],
+            "description": "OXID connector for ONGR framework",
+            "homepage": "http://ongr.io",
+            "time": "2015-06-29 07:16:19"
         },
         {
             "name": "ongr/router-bundle",
@@ -2135,7 +2228,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ongr/oxid-connector-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

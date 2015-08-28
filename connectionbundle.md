@@ -31,9 +31,9 @@ public function registerBundles()
 
 ## Full import from MySQL
 
-Create Entity in src/AppBundle/Entity
+### Create Entity 
 
-Product.php:
+Product.php (src/AppBundle/Entity/):
 
 ```php
 <?php
@@ -89,7 +89,7 @@ INSERT INTO `product` (`id`, `flower`, `place`, `stock`) VALUES
 
 ### Configure Connection bundle for import.
 
-services.yml (app/config/):
+services.yml (src/AppBundle/Resources/config):
 
 ```
 parameters:
@@ -105,14 +105,14 @@ services:
                - @es.manager
                - AppBundle:Product  # my.elasticsearch.entity.class
            tags:
-               - { name: kernel.event_listener, event: ongr.pipeline.import.default.source, method: onSource }
+               - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.source, method: onSource }
 
     test.import.modifier:
        # parent: ongr_connections.import.modifier
        # here instead of taking 'parent' we need our modifyListener for our db table structure
         class: %test.import.modifier.class%
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.modify, method: onModify }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.modify, method: onModify }
 
     test.import.consumer:
         class: %ongr_connections.import.consumer.class%
@@ -120,7 +120,7 @@ services:
         arguments:
             - @es.manager
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.consume, method: onConsume }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.consume, method: onConsume }
 
     test.import.finish:
         class: %ongr_connections.import.finish.class%
@@ -128,14 +128,16 @@ services:
         arguments:
             - @es.manager
         tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.import.default.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.product.flowers.finish, method: onFinish }
 ```
 
 Here basically everything is taken from Connection bundle. In import.modifier our event listener need to be used, because of our DB table structure.
 
-Create event listener in src/AppBundle/EventListener/
+Also 'product.flowers' is used instead of 'default' pipeline to avoid problems when importing.
 
-ImportModifyEventListener.php
+### Create event listener
+
+ImportModifyEventListener.php (src/AppBundle/EventListener/):
 
 ```php
 <?php
@@ -176,11 +178,14 @@ To use setId and getId documents must have getters and setters.
 ### Import db table to elastic:
 
 ```
-$ app/console ongr:import:full
+$ app/console ongr:import:full product.flowers
 ```
 
 -----
 
+## Sync [TO-DO]
+
+-----
 
 # How to move services.yml from app/ to Bundle
 
