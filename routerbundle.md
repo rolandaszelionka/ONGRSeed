@@ -150,6 +150,4 @@ Product also can be accessed via URL, example:
 
  `url/product/{id}`
 
-
-
-[Back to documentation](elasticdocumentation.md)
+[Back to documentation](README.md)

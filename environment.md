@@ -86,4 +86,6 @@ index.html.twig (src/AppBundle/Resources/views/Default/):
 {% block body %}
 	homepage
 {% endblock %}
-``` 
+```
+
+[Back to documentation](README.md)

@@ -215,3 +215,5 @@ class AppExtension extends Extension
     }
 }
 ```
+
+[Back to documentation](README.md)

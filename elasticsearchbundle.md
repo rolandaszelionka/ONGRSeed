@@ -199,4 +199,4 @@ ElasticSearch comparison to MySQL: index = Database, type = Table.
 
 In this example we created 25 Tables (all named product) inside one Database (named product).
 
-
+[Back to documentation](README.md)
