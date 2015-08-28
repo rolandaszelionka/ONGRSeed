@@ -1,0 +1,18 @@
+#app:
+#    resource: @AppBundle/Controller/
+#    type:     annotation
+
+app:
+    resource: @AppBundle/Resources/config/routing.yml
+
+# Meta route that is called by OngrRouterBundle.
+ongr_product:
+    pattern:  /productDocument/{document}/ # This pattern is ignored and required for compatibility with Symfony.
+    defaults: { _controller: AppBundle:Product:document }
+
+# Actual route for accessing by document id (not SEO).
+ongr_product_show:
+    pattern:  /product/{id}
+    defaults: { _controller: AppBundle:Product:show }
+    requirements:
+        page:  \d+

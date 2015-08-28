@@ -1,0 +1,157 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+ongr_elasticsearch:
+    connections:
+        default:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: product
+            settings:
+                refresh_interval: -1
+                number_of_replicas: 1
+    managers:
+        default:
+            connection: default
+            mappings:
+                - AppBundle
+
+ongr_filter_manager:
+    managers:
+        default:
+            filters:
+                - sorting
+                - list_pager
+                - search
+                - fuzzy_search
+                - range_search
+                - flowers
+                - stocks
+                - places
+            repository: 'es.manager.default.product'
+    filters:
+        sort:
+            sorting:
+                request_field: 'sort'
+                choices:
+                    - { label: Name ascending, field: flower, default: true, order: asc }
+                    - { label: Name descending, field: flower,  order: desc }
+                    - { label: Stock descending, field: stock,  order: desc }
+                    - { label: Stock ascending, field: stock,  order: asc }
+        pager:
+            list_pager:
+                request_field: 'page'
+                count_per_page: 5
+                max_pages: 10
+        match: #reikia butinai tikslios frazes
+            search:
+                request_field: 'search'
+                field: flower
+        fuzzy: #suranda su nepilnom frazem
+            fuzzy_search:
+                request_field: 'fuzzy_search'
+                field: flower
+#                fuzziness: 5 # The maximum edit distance.
+#                max_expansions: # The maximum number of terms that the fuzzy query will expand to.
+#                prefix_length: # The number of initial characters which will not be “fuzzified”
+
+        range:
+            range_search:
+                request_field: 'range'
+                field: stock
+        multi_choice:
+            flowers:
+                request_field: 'flower'
+                field: flower
+        document_field:
+            stocks:
+                request_field: 'stock'
+                field: stock
+        choice:
+            places:
+                request_field: 'places'
+                field: place
+                sort:
+                  type: _term # arba _count
+                  order: asc
+                  priorities: # isvardinta salis pasirinkimu sarase rodoma pirmiau
+                     - german
+
+ongr_router:
+    es_manager: default
+    seo_routes:
+        product:
+            _route: ongr_product
+            _controller: AppBundle:Product:document
+            _default_route: ongr_product_show
+            _id_param: documentId

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Product page{% endblock %}
+{% block body %}
+<div class="container">
+    <h2>Product info</h2>
+    {% if product %}
+    <ul class="list-group" style="list-style:none;">
+        <li class="list-group-item">{{ product.flower }} </li>
+        <li class="list-group-item">{{ product.place }} </li>
+        <li class="list-group-item">{{ product.stock }} </li>
+    </ul>
+    {% else %}
+        No product found.
+    {% endif %}
+    <h3><a href="{{ path('ongr_filter_page') }}">< Back to products list</a></h3>
+</div>
+{% endblock %}

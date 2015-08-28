@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Elastic{% endblock %}
+{% block body %}
+<div class="container">
+    <h2><a href="{{ path('ongr_es_home') }}">Elastic Search Bundle test</a></h2>
+
+    <h3>Product with id 27 is:</h3>
+    {{ product1.flower }} {{ product1.place }} {{ product1.stock }}
+
+    <h3>Products with stock 5:</h3>
+    <ul class="list-group" style="list-style:none;">
+    {% for choice in product2 %}
+        <li class="list-group-item"> {{ choice.flower }} {{ choice.place }} {{ choice.stock }}</li>
+    {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}
