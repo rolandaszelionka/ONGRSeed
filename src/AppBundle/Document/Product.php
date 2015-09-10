@@ -81,6 +81,4 @@ class Product extends AbstractDocument
     {
         $this->place = $place;
     }
-
-
 }

@@ -80,13 +80,6 @@ ongr_elasticsearch:
             settings:
                 refresh_interval: -1
                 number_of_replicas: 1
-        oxid:
-            hosts:
-                - { host: 127.0.0.1:9200 }
-            index_name: ongr_oxid
-            settings:
-                refresh_interval: -1
-                number_of_replicas: 1
     managers:
         default:
             connection: default
@@ -94,7 +87,7 @@ ongr_elasticsearch:
             mappings:
                 - AppBundle
         oxid:
-            connection: oxid
+            connection: default
             debug: "%kernel.debug%"
             mappings:
                 - ONGROXIDConnectorBundle
@@ -209,4 +202,16 @@ ongr_router:
             _controller: AppBundle:Product:document
             _default_route: ongr_product_show
             _id_param: documentId
+        content:
+            _route: ongr_content
+            _controller: AppBundle:Content:document
+            _default_route: ongr_content_show
+            _id_param: documentId
 
+ongr_content:
+    es:
+        repositories:
+            product: es.manager.default.product #.product  returns _type:product from 'product' document
+            content: es.manager.default.content #.content returns _type:content from  'product'  document. so we can then select by slug
+            category: es.manager.default.category
+    category_root_id: rootid

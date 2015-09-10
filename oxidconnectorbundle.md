@@ -27,8 +27,6 @@ public function registerBundles()
 
 * Create Oxid articles import to ElasticSearch.
 
-* Use new index `ongr_oxid` for oxid articles.
-
 * **Assume that symfony and oxid uses same database.**
 
 * Use new bundle for oxid import.
@@ -105,21 +103,11 @@ config.yml
 
 ```
 ongr_elasticsearch:
-    connections:
-        default:
-			# ...
-        oxid:
-            hosts:
-                - { host: 127.0.0.1:9200 }
-            index_name: ongr_oxid
-            settings:
-                refresh_interval: -1
-                number_of_replicas: 1
     managers:
         default:
             # ...
         oxid:
-            connection: oxid
+            connection: default
             debug: "%kernel.debug%"
             mappings:
                 - ONGROXIDConnectorBundle
@@ -234,7 +222,7 @@ services:
 ```
 routing.yml (src/OxidBundle/Resources/config/):
 ```
-oxid_homepage:
+oxid_article:
     path:     /oxid/article/{id}
     defaults: { _controller: OxidBundle:Default:index }
 ```
@@ -284,12 +272,6 @@ Shows product info by id.
 
 
 ## Usage
-
-Create index for oxid articles:
-
-```
-$ app/console ongr:es:index:create --manager=oxid
-```
 
 Import articles to ElasticSearch:
 

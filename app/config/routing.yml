@@ -20,3 +20,15 @@ ongr_product_show:
     defaults: { _controller: AppBundle:Product:show }
     requirements:
         page:  \d+
+
+# Meta route that is called by OngrRouterBundle.
+ongr_content:
+    pattern:  /contentDocument/{document}/
+    defaults: { _controller: AppBundle:Content:document }
+
+# Actual route for accessing by document id (not SEO).
+ongr_content_show:
+    pattern:  /content/{id}
+    defaults: { _controller: AppBundle:Content:show }
+    requirements:
+        page:  \d+

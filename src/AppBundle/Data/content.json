@@ -1,0 +1,5 @@
+[
+  {"count":2,"date":"2015-04-08T14:46:21+0200"},
+  {"_type":"content","_id":"1","_source":{"slug":"who-we-are","title":"Who We Are", "content": "Elastic believes getting immediate, actionable insight from data matters. As the company behind the three open source projects — Elasticsearch, Logstash, and Kibana — designed to take data from any source and search, analyze, and visualize it in real time, Elastic is helping people make sense of data. From stock quotes to Twitter streams, Apache logs to WordPress blogs, our products are extending what's possible with data, delivering on the promise that good things come from connecting the dots.", "urls": [{"url": "who-we-are/", "key": "whoweare"}] }},
+  {"_type":"content","_id":"2","_source":{"slug":"learn","title":"Learn Elasti Search", "content": "Whether you're a newcomer to Elastic or a seasoned veteran, we've got a multitude of resources — from webinars to blog posts, demos, step-by-step tutorials, forums, and more — to help you do great things with data and inspire you to stay curious.", "urls": [{"url": "learn/", "key": "learn"}] }},
+]

@@ -11,3 +11,6 @@ ongr_filter_page:
 #        _controller: ONGRFilterManagerBundle:Manager:manager
 #        managerName: "default"
 #        template: "AppBundle:List:results.html.twig"
+
+ongr_content_snippet:
+    resource: "@ONGRContentBundle/Resources/config/routing.yml"

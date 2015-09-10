@@ -23,7 +23,8 @@
         "ongr/filter-manager-bundle": "0.5.*",
         "ongr/connections-bundle": "~0.8.1",
         "ongr/router-bundle": "~0.1",
-        "ongr/oxid-connector-bundle": "dev-master"
+        "ongr/oxid-connector-bundle": "dev-master",
+        "ongr/content-bundle": "0.4.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

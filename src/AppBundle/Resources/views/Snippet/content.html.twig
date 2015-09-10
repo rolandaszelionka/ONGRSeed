@@ -1,0 +1,7 @@
+
+{% if document is defined %}
+    <h3><a href="{{ url('ongr_content', {'document': document}) }}">{{ document.title }}</a></h3>
+    <p>{{ include(template_from_string(document.content)) }}</p>
+    {# another route example #}
+    {#<a href="{{ path('ongr_content', {'document': document, '_seo_key': 'whoweare'}) }}">Link to product (path)</a>#}
+{% endif %}

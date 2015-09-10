@@ -2,17 +2,54 @@
 {% block title %}Elastic{% endblock %}
 {% block body %}
 <div class="container">
+    <h2>Start page</h2>
     <h2><a href="{{ path('ongr_es_home') }}">Elastic Search Bundle test</a></h2>
 
-    <h3>Product with id 1 is:</h3>
-    {{ product1.flower }} {{ product1.place }} {{ product1.stock }}
+    {# available content will work when  filter, content, elastic bundles will be installed #}
+    Other available pages: <br/>
+    <a href="{{ path('ongr_filter_page') }}">Filters manager bundle test</a> <br/>
+    <a href="{{ path('ongr_product_show', {'id':1}) }}">1st item in product (Elastic search bundle)</a> <br/>
+    <a href="{{ path('ongr_content_show', {'id':1}) }}">1st item in content (Content bundle)</a> <br/>
+    <a href="{{ path('oxid_article', {'id':'6b6099c305f591cb39d4314e9a823fc1'}) }}">1st item in articles (Oxid connector bundle)</a> <br/>
 
-    <h3>Products with stock 5:</h3>
+    {% if product1 is not empty %}
+    <h3>Product found by id=1:</h3>
+    {{ product1.flower }} {{ product1.place }} {{ product1.stock }}
+    {% endif %}
+    <hr/>
+
+    {% if product2 is not empty %}
+    <h3>Products found with stock=5:</h3>
     <ul class="list-group" style="list-style:none;">
     {% for choice in product2 %}
         <li class="list-group-item"> {{ choice.flower }} {{ choice.place }} {{ choice.stock }}</li>
     {% endfor %}
     </ul>
+    {% endif %}
+    <hr/>
+
+    {% if product3 is not empty %}
+        <h3>Products found with stock=1, sorted by name Asc, limited to 3 :</h3>
+        <ul class="list-group" style="list-style:none;">
+            {% for choice in product3 %}
+                <li class="list-group-item"> {{ choice.flower }} {{ choice.place }} {{ choice.stock }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <hr/>
+
+    {# TO DO: #}
+    {#{{ getCategoryTree('AppBundle:Default:index.html.twig', 2, '1') }}#}
+    {#{{ getContentsBySlugs(['pirmas']) }}#}
+
+    {% if product4 is not empty %}
+        <h3>Content found by id=1:</h3>
+        Slug: {{ product4.slug }}, Title: {{ product4.title }}
+    {% endif %}
+    <hr/>
+
+    <h3>Content Snippet by slug 'learn' example:</h3>
+    {{ snippet('learn', 'AppBundle:Snippet:content.html.twig') }}
 
 </div>
 {% endblock %}
