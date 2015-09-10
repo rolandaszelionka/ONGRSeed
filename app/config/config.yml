@@ -141,7 +141,7 @@ ongr_filter_manager:
                 - list_pager
                 - search
                 - fuzzy_search
-                - range_search
+#                - range_search
                 - flowers
                 - stocks
                 - places
@@ -171,7 +171,6 @@ ongr_filter_manager:
 #                fuzziness: 5 # The maximum edit distance.
 #                max_expansions: # The maximum number of terms that the fuzzy query will expand to.
 #                prefix_length: # The number of initial characters which will not be “fuzzified”
-
         range:
             range_search:
                 request_field: 'range'
