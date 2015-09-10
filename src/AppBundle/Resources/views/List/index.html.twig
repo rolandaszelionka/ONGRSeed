@@ -8,6 +8,7 @@
         {% set filters = filter_manager.filters %}
 
         <div class="row">
+            {% if filters.sorting is defined %}
             <div class="col-md-4">
                 <h3><i>Sort</i> Flowers:</h3>
 
@@ -17,6 +18,9 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
+
+            {% if filters.places is defined %}
             <div class="col-md-4">
                 <h3>Place <i>Choice</i>:</h3>
                 <ul class="list-group" style="list-style:none;">
@@ -25,6 +29,9 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
+
+            {% if filters.flowers is defined %}
             <div class="col-md-4">
                 <h3><i>Multiselect</i> flowers:</h3>
 
@@ -34,9 +41,11 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% endif %}
         </div>
 
         <div class="row">
+            {% if filters.search is defined %}
             <div class="col-md-3">
                 <h3><i>Match Search</i> flower:</h3>
 
@@ -46,7 +55,9 @@
                 </form>
                 f.e iris
             </div>
+            {% endif %}
 
+            {% if filters.fuzzy_search is defined %}
             <div class="col-md-3">
                 <h3><i>Fuzzy Search</i> flower:</h3>
                 <form method="get" action="{{ path('ongr_filter_page', filters.fuzzy_search.getUrlParameters()) }}">
@@ -55,7 +66,9 @@
                 </form>
                 f.e iri
             </div>
+            {% endif %}
 
+            {% if filters.range_search is defined %}
             <div class="col-md-3">
                 <h3><i>Range Search</i> stock:</h3>
                 <form method="get" action="{{ path('ongr_filter_page', filters.range_search.getUrlParameters()) }}">
@@ -64,7 +77,9 @@
                 </form>
                 f.e 1;5
             </div>
+            {% endif %}
 
+            {% if filters.stocks is defined %}
             <div class="col-md-3">
                 <h3><i>doc_field Search</i> stock:</h3>
 
@@ -74,11 +89,11 @@
                 </form>
                 f.e 2
             </div>
+            {% endif %}
         </div>
 
-
-
         <br/>
+        {% if filter_manager.result is defined %}
         <h3>Products: </h3>
         <ul class="list-group">
             {% for product in filter_manager.result %}
@@ -86,10 +101,13 @@
                <li class="list-group-item">{{ product.flower }} {{ product.stock }}</li>
             {% endfor %}
         </ul>
+        {% endif %}
 
+        {% if filters.list_pager is defined %}
         <br/>
         <h3>Pagination: </h3>
         {{ ongr_paginate(filters.list_pager.getPager(), 'ongr_filter_page') }}
+        {% endif %}
 
     </div>
 {% endblock %}
