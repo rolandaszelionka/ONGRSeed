@@ -8,7 +8,6 @@ https://github.com/ongr-io/OXIDConnectorBundle/blob/master/Resources/docs/index.
 
 ```
 $ composer require ongr/oxid-connector-bundle dev-master
-$ composer update
 ```
 
 ```php

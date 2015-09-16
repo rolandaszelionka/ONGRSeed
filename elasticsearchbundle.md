@@ -6,7 +6,6 @@ https://ongr.readthedocs.org/en/latest/components/ElasticsearchBundle/index.html
 
 ```
 $ composer require ongr/elasticsearch-bundle "~0.1"
-$ composer update
 ```
 
 ```php

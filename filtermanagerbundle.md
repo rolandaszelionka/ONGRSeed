@@ -5,7 +5,7 @@ https://ongr.readthedocs.org/en/latest/components/FilterManagerBundle/index.html
 ## Installation
 
 ```
-$ composer require "ongr/filter-manager-bundle": "~0.5.7"
+$ composer require ongr/filter-manager-bundle "~0.5.7"
 ```
 
 ```php

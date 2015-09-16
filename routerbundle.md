@@ -6,7 +6,6 @@ https://ongr.readthedocs.org/en/latest/components/RouterBundle/index.html
 
 ```
 $ composer require "ongr/router-bundle" "~0.1"
-$ composer update
 ```
 
 ```php
