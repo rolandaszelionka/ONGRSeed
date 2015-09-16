@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ContentController extends Controller
 {
 
-    public function documentAction(Content $document, $seoKey)
+    public function documentAction(Content $document)
     {
         return $this->render('AppBundle:Content:index.html.twig', array('content' => $document));
     }

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ProductController extends Controller
 {
 
-    public function documentAction(Product $document, $seoKey)
+    public function documentAction(Product $document)
     {
         return $this->render('AppBundle:Product:index.html.twig', array('product' => $document));
     }
