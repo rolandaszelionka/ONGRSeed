@@ -1,14 +1,30 @@
 <div class="container">
-    <ul class="nav navbar-nav">
-        {% for category in categories %}
-            {% if not category.hidden %}
-                <li class="{% if category.current or category.expanded %} current{% endif %}">
-                    <a href="{{ url("ongr_category", {'document' : category}) }}">{{ category.title }}</a>
-                    {% if category.hasVisibleChildren %}
-                        {{ renderCategoryTree(category.children,null,null,'AppBundle:Category:inc/topsubmenu.html.twig') }}
-                    {% endif %}
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Demo categories</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    {% for category in categories %}
+                        {% if not category.hidden %}
+                            {% if category.hasVisibleChildren %}
+                                <li class="dropdown{% if category.current or category.expanded %} active{% endif %}">
+                                    <a href="{{ url("ongr_category", {'document' : category}) }}" class="dropdown-toggle" data-toggle="dropdown">
+                                        {{ category.title }}
+                                        <span class="caret"></span>
+                                    </a>
+                                    {{ renderCategoryTree(category.children,null,null,'AppBundle:Category:inc/topsubmenu.html.twig') }}
+                                </li>
+                            {% else %}
+                                <li class="{% if category.current or category.expanded %} active{% endif %}">
+                                    <a href="{{ url("ongr_category", {'document' : category}) }}">{{ category.title }}</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
