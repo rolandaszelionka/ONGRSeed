@@ -11,6 +11,7 @@
     <a href="{{ path('ongr_product_show', {'id':1}) }}">1st item in product (Elastic search bundle)</a> <br/>
     <a href="{{ path('ongr_content_show', {'id':1}) }}">1st item in content (Content bundle)</a> <br/>
     <a href="{{ path('oxid_article', {'id':'6b6099c305f591cb39d4314e9a823fc1'}) }}">1st item in articles (Oxid connector bundle)</a> <br/>
+    <a href="{{ path('ongr_content_show', {'id':1}) }}">Link to 1st item in content(Content bundle)</a> <br/>
 
     {% if product1 is not empty %}
     <h3>Product found by id=1:</h3>
@@ -37,10 +38,6 @@
         </ul>
     {% endif %}
     <hr/>
-
-    {# TO DO: #}
-    {#{{ getCategoryTree('AppBundle:Default:index.html.twig', 2, '1') }}#}
-    {#{{ getContentsBySlugs(['pirmas']) }}#}
 
     {% if product4 is not empty %}
         <h3>Content found by id=1:</h3>

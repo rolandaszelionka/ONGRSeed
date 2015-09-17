@@ -146,6 +146,11 @@ ongr_filter_manager:
                 - stocks
                 - places
             repository: 'es.manager.default.product'
+        category:
+            filters:
+                - cat_list_pager
+                - category
+            repository: 'es.manager.default.product'
     filters:
         sort:
             sorting:
@@ -160,6 +165,10 @@ ongr_filter_manager:
                 request_field: 'page'
                 count_per_page: 5
                 max_pages: 10
+            cat_list_pager:
+               request_field: 'page'
+               count_per_page: 2
+               max_pages: 10
         match: #reikia butinai tikslios frazes
             search:
                 request_field: 'search'
@@ -183,6 +192,9 @@ ongr_filter_manager:
             stocks:
                 request_field: 'stock'
                 field: stock
+            category:
+                request_field: 'document'
+                field: category_id
         choice:
             places:
                 request_field: 'places'
@@ -206,6 +218,11 @@ ongr_router:
             _controller: AppBundle:Content:document
             _default_route: ongr_content_show
             _id_param: documentId
+        category:
+            _route: ongr_category
+            _controller: AppBundle:Category:document
+            _default_route: ongr_category
+            _id_param: document
 
 ongr_content:
     es:

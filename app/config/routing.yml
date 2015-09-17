@@ -21,14 +21,28 @@ ongr_product_show:
     requirements:
         page:  \d+
 
-# Meta route that is called by OngrRouterBundle.
 ongr_content:
     pattern:  /contentDocument/{document}/
     defaults: { _controller: AppBundle:Content:document }
 
-# Actual route for accessing by document id (not SEO).
 ongr_content_show:
     pattern:  /content/{id}
     defaults: { _controller: AppBundle:Content:show }
     requirements:
         page:  \d+
+
+ongr_category:
+    pattern:  /categoryDocument/{document}/
+    methods:  [GET]
+    defaults:
+        _controller: AppBundle:Category:document
+        managerName: "category"
+
+_ongr_category_tree:
+    pattern:  /_proxy/tree/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
+    defaults:
+        _controller: AppBundle:Category:categoryTree
+        theme: "top"
+        maxLevel: 2
+        partialTree: "pt"
+        selectedCategory: null

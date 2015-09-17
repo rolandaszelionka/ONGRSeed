@@ -1,0 +1,6 @@
+{% extends 'AppBundle:Product:list.html.twig' %}
+{% block title %}Category products{% endblock %}
+{% block topmenu %}
+    {{ render(url('_ongr_category_tree', {theme : 'top', maxLevel: 2, selectedCategory : category.id}), {strategy: 'ssi'}) }}
+{% endblock %}
+

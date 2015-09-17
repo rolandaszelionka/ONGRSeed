@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {% if filter_manager.result is defined %}
+            <h3>Products: </h3>
+            <ul class="list-group">
+                {% for product in filter_manager.result %}
+                    <li class="list-group-item"><a href="{{ path('ongr_product', {'document': product, '_seo_key': 'normal-name'}) }}">{{ product.flower }} {{ product.stock }}</a></li>
+                    {#<li class="list-group-item">{{ product.flower }} {{ product.stock }}</li>#}
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+
+        {% if filter_manager.filters.cat_list_pager is defined %}
+            <br/>
+            <h3>Pagination: </h3>
+            {{ ongr_paginate(filter_manager.filters.cat_list_pager.getPager(), 'ongr_category', {'document':category}) }}
+        {% endif %}
+    </div>
+{% endblock %}

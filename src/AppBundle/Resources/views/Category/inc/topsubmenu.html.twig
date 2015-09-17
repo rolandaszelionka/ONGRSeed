@@ -1,0 +1,9 @@
+<ul style="list-style:none;padding:0;">
+    {% for category in categories %}
+        {% if not category.hidden %}
+            <li class="{% if category.current or category.expanded %} current{% endif %}">
+                <a href="{{ url("ongr_category", {'document' : category}) }}">{{ category.title }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>
