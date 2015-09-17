@@ -15,6 +15,6 @@ This documentation is for testing ONGR Bundles.
 
   6. [Oxid Connector bundle dev-master (2015-08-28)](oxidconnectorbundle.md)
 
-  7. [Oxid Content bundle v0.4.1 (2015-09-02)](contentbundle.md)
+  7. [Content bundle v0.4.1 (2015-09-02)](contentbundle.md)
 
   8. Api
