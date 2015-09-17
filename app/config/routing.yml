@@ -46,3 +46,13 @@ _ongr_category_tree:
         maxLevel: 2
         partialTree: "pt"
         selectedCategory: null
+
+_ongr_breadcrumbs:
+    pattern:  /_proxy/breadcrumbs/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
+    methods:  [GET]
+    defaults:
+        _controller: AppBundle:Category:categoryTree
+        theme: "breadcrumbs"
+        maxLevel: 20
+        partialTree: "pt"
+        selectedCategory: null

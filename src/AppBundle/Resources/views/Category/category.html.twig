@@ -3,4 +3,12 @@
 {% block topmenu %}
     {{ render(url('_ongr_category_tree', {theme : 'top', maxLevel: 2, selectedCategory : category.id}), {strategy: 'ssi'}) }}
 {% endblock %}
+{% block breadcrumbs %}
+<div class="container">
+    <ul class="breadcrumb">
+        {{ render(url('_ongr_breadcrumbs', {selectedCategory : category.id}), {strategy: 'ssi'}) }}
+        <li class="active">{{ category.title | trans | raw }}</li>
+    </ul>
+</div>
+{% endblock %}
 

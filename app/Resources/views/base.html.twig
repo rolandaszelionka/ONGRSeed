@@ -18,6 +18,7 @@
     </head>
     <body>
         {% block topmenu %}{{ render(url('_ongr_category_tree', {'theme' : 'top', 'maxLevel': 1})) }}{% endblock %}
+        {% block breadcrumbs %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
