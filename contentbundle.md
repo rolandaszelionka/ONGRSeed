@@ -562,8 +562,6 @@ The logic looks like that:
 
 So in our example in base template only 1st level menu is displayed.
 Then if you enter category and it have subcategories -they are also displayed.
-  
-//how to show 3 level subcats
                     - 
 
 ## Add breadcrumbs 
@@ -626,6 +624,6 @@ Category.php document
 
 - when pushing data to elastic over api, link ID must be the same as in body
 
-
+- how to show 3 level subcats
 
 [Back to documentation](README.md)
